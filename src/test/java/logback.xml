@@ -1,0 +1,29 @@
+<configuration debug="true">
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %c [%p] %m%n</pattern>
+    </encoder>
+  </appender>
+      
+
+  <appender name="FLUME" class="com.youmag.logback.appenders.flume.FlumeAppender">
+	<layout><pattern>%d{yyyy-MM-dd HH:mm:ss} %c [%p] %m%n</pattern></layout>
+	<type>agent</type>
+	<name>FlumeAppender</name>
+
+    <agent class="com.youmag.logback.appenders.flume.FlumeAgent">
+      <host>marshall.youmag.com</host>
+      <port>4141</port>
+    </agent>
+
+  </appender>
+        
+
+  <root level="info">
+    <appender-ref ref="FLUME" />
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
